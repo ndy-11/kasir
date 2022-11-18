@@ -43,7 +43,7 @@
         $conn = mysqli_connect("localhost","root","","tokobatubara");
         $date = date('Y-m-d');
         $expired = date('Y-m-d',strtotime('+3 day',strtotime($date)));
-        $ambildatastock = mysqli_query($conn,"SELECT * FROM `produk` WHERE date_format(tgl_kdl,'%Y-%m-%d') > date_format('".$date."','%Y-%m-%d') and date_format(tgl_kdl,'%Y-%m-%d') <= date_format('".$expired."','%Y-%m-%d')");
+        $ambildatastock = mysqli_query($conn,"SELECT * FROM `produk` WHERE date_format(tgl_kdl,'%Y-%m-%d') >= date_format('".$date."','%Y-%m-%d') and date_format(tgl_kdl,'%Y-%m-%d') <= date_format('".$expired."','%Y-%m-%d')");
         // dd($date,$expired,$ambildatastock);
         while($fetch=mysqli_fetch_array($ambildatastock)){
             $barang = $fetch['nama_produk'];
@@ -51,6 +51,25 @@
                 <div class="alert alert-warning alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <strong>Perhatian!</strong> <?= $barang ?> akan expired.
+                </div>
+                <?php 
+}
+?>
+                <?php
+        $conn = mysqli_connect("localhost","root","","tokobatubara");
+        $date = date('Y-m-d');
+        $expired = date('Y-m-d',strtotime('+3 day',strtotime($date)));
+        $ambildatastock = mysqli_query($conn,"SELECT * FROM `produk` WHERE date_format(tgl_kdl,'%Y-%m-%d') < date_format('".date('Y-m-d')."','%Y-%m-%d')");
+        while($fetch=mysqli_fetch_array($ambildatastock)){
+            $barang = [];
+            $barang['nama'] = $fetch['nama_produk'];
+            $barang['id'] = $fetch['id_produk'];
+        ?>
+                <div class="alert alert-error alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Perhatian!</strong> <?= $barang['nama'] ?> telah expired. <a
+                        href="{{ route('produk.hapus', ['id' => $barang['id']]) }}"><button
+                            class="btn btn-primary">Hapus</button></a>
                 </div>
                 <?php 
 }

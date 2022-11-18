@@ -332,8 +332,8 @@
                     if ($('#diterima').val() != 0) {
                         $('.tampil-bayar').text('Kembali: Rp. ' + response.kembalirp);
                         $('.tampil-terbilang').text(response.kembali_terbilang);
-                        disable_kembalian(response.kembalirp)
                     }
+                    disable_kembalian(response.kembalirp, $('#diterima').val())
                 })
                 .fail(errors => {
                     alert('Tidak dapat menampilkan data');
@@ -341,8 +341,8 @@
                 })
         }
 
-        function disable_kembalian(data) {
-            if (data < 0) {
+        function disable_kembalian(data, bayar) {
+            if (data < 0 || bayar <= 0) {
                 document.getElementById('simpan_transaksi').disabled = true;
             } else {
                 document.getElementById('simpan_transaksi').disabled = false;

@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/produk/data', [ProdukController::class, 'data'])->name('produk.data');
         Route::post('/produk/delete-selected', [ProdukController::class, 'deleteSelected'])->name('produk.delete_selected');
         Route::post('/produk/cetak-barcode', [ProdukController::class, 'cetakBarcode'])->name('produk.cetak_barcode');
+        Route::get('/produk/hapus/{id}', [ProdukController::class, 'hapus'])->name('produk.hapus');
         Route::resource('/produk', ProdukController::class);
 
         Route::get('/member/data', [MemberController::class, 'data'])->name('member.data');
@@ -95,7 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/setting/first', [SettingController::class, 'show'])->name('setting.show');
         Route::post('/setting', [SettingController::class, 'update'])->name('setting.update');
     });
- 
+
     Route::group(['middleware' => 'level:1,2'], function () {
         Route::get('/profil', [UserController::class, 'profil'])->name('user.profil');
         Route::post('/profil', [UserController::class, 'updateProfil'])->name('user.update_profil');

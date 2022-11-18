@@ -18,12 +18,15 @@
                     </thead>
                     <tbody>
                         @foreach ($produk as $key => $item)
+                            <?php
+                            if(!(strtotime($item->tgl_kdl) < strtotime(date('Y-m-d')))){
+                            ?>
                             <tr>
-                                <td width="5%">{{ $key+1 }}</td>
+                                <td width="5%">{{ $key + 1 }}</td>
                                 <td><span class="label label-success">{{ $item->kode_produk }}</span></td>
                                 <td>{{ $item->nama_produk }}</td>
                                 <td>{{ $item->harga_beli }}</td>
-                                <td>{{ $item-> stok}}
+                                <td>{{ $item->stok }}
                                 <td>
                                     <a href="#" class="btn btn-primary btn-xs btn-flat"
                                         onclick="pilihProduk('{{ $item->id_produk }}', '{{ $item->kode_produk }}')">
@@ -32,6 +35,9 @@
                                     </a>
                                 </td>
                             </tr>
+                            <?php 
+                            }
+                            ?>
                         @endforeach
                     </tbody>
                 </table>
