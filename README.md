@@ -1,8 +1,18 @@
-## Tentang Aplikasi
+# Kasir
+Aplikasi POS atau point of sales adalah aplikasi yang digunakan untuk mengelola transaksi pada sebuah toko atau oleh kasir.
 
-Aplikasi POS atau point of sales adalah aplikasi yang digunakan untuk mengelola transaksi pada sebuah toko atau oleh kasir. Aplikasi ini dibuat menggunakan Laravel v8.* dan minimal PHP v7.4 jadi apabila pada saat proses instalasi atau penggunaan terdapat error atau bug kemungkinan karena versi dari PHP yang tidak support.
+## Tech Stack
 
-### Beberapa Fitur yang tersedia:
+**Client:** Bootstrap, ChartJS
+
+**Server:** PHP 7.4.x, Laravel 8.x
+
+## Dependencies
+
+- [Laravel Breeze](https://github.com/laravel/breeze)
+- [Laravel Modules](https://nwidart.com/laravel-modules/v1)
+  
+### Fitur
 - Manajemen Kategori Produk
 - Manajemen Produk
   - Multiple Delete
@@ -27,4 +37,3 @@ Aplikasi POS atau point of sales adalah aplikasi yang digunakan untuk mengelola 
   - Setting Diskon Member
 - User (Administrator, Kasir)
 - Grafik ChartJS pada Dashboard
-# kasir
